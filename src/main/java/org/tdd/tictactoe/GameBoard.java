@@ -11,6 +11,7 @@ public class GameBoard {
 	private static final int GAME_BOARD_SIZE = 3;
 	private static final char PLAYER_X = 'X';
 	private static final char PLAYER_O = 'O';
+	private static final char EMPTY = '\0';
 	
 	private char[][] board = new char[GAME_BOARD_SIZE][GAME_BOARD_SIZE];
 	private char currentPlayer;
@@ -29,7 +30,7 @@ public class GameBoard {
 	}
 
 	public boolean isPositionAvailable(Position position) {
-		Predicate<Position> positionNotOccupiedPredicate =  pos -> board[pos.getRow()][pos.getColumn()] == '\0';
+		Predicate<Position> positionNotOccupiedPredicate =  pos -> board[pos.getRow()][pos.getColumn()] == EMPTY;
 		return positionNotOccupiedPredicate.test(position);
 	}
 	

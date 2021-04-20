@@ -63,6 +63,14 @@ public class GameBoard {
 		return isColumnOccupied;
 	}
 	
+	public boolean isTopLeftToBottomRightDiagonalOccupiedBySinglePlayer() {
+		boolean isDiagonalOccupied = false;
+		if (compareGameBoardContent(board[0][0], board[1][1], board[2][2])) {
+			isDiagonalOccupied = true;
+		}
+		return isDiagonalOccupied;
+	}
+	
 	private boolean compareGameBoardContent(char move1, char move2, char move3) {
 		return (move1 != EMPTY && move1 == move2 && move2 == move3);
 	}

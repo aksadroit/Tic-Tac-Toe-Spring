@@ -47,6 +47,11 @@ public class GameBoardTest {
 		assertTrue(board.isPositionAvailable(position));
 	}
 	
-	
+	@Test
+	public void shouldReturnTrueWhenInputPositionValuesAreInValidRangeOfZeroToTwo() {
+		Position validPosition = new Position(POS_0, POS_0);
+		assertTrue(board.isPositionWithinValidRange(validPosition));
+
+	}
 
 }

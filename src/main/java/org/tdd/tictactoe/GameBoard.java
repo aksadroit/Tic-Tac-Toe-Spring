@@ -33,5 +33,10 @@ public class GameBoard {
 		Predicate<Position> positionNotOccupiedPredicate =  pos -> board[pos.getRow()][pos.getColumn()] == EMPTY;
 		return positionNotOccupiedPredicate.test(position);
 	}
+
+	public boolean isPositionWithinValidRange(Position validPosition) {
+		Predicate<Position> positionRangePredicate =  pos -> pos.getRow() >= 0 && pos.getRow() <= 2 && pos.getColumn() >= 0 && pos.getColumn() <= 2;
+		return positionRangePredicate.test(validPosition);
+	}
 	
 }

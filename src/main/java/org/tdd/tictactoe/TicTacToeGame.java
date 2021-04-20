@@ -13,13 +13,14 @@ import org.tdd.tictactoe.model.Position;
 public class TicTacToeGame {
 	
 	private static final String POSITION_OCCUPIED_MESSAGE = "Position is already occupied by other player. Please choose a different position.";
+	private static final String POSITION_OUT_OF_RANGE_MESSAGE = "Please provide a valid position within a range of 0 to 2";
 	
 	@Autowired
 	private GameBoard board;
 	
 	public void play(Position position) throws PositionOutOfBoundException, PositionAlreadyOccupiedException {
 		if (!board.isPositionWithinValidRange(position)) {
-			throw new PositionOutOfBoundException("Please provide a valid position within a range of 0 to 2");
+			throw new PositionOutOfBoundException(POSITION_OUT_OF_RANGE_MESSAGE);
 		}
 		
 		if (!board.isPositionAvailable(position)) {

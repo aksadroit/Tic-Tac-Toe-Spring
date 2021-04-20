@@ -7,6 +7,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.tdd.tictactoe.model.Position;
 
 @SpringBootTest
 public class TicTacToeGameTest {
@@ -25,21 +26,25 @@ public class TicTacToeGameTest {
 	
 	@Test
 	public void playerXShouldBeAbleToMakeMoveInAnyPositionOnTheBoardAndIdentifyTheSame() {
-		Mockito.doNothing().when(board).placeMoveOnTheBoard(POS_1, POS_1);
-		game.play(POS_1, POS_1);
-		Mockito.when(board.identifyPlayerAt(POS_1, POS_1)).thenReturn(PLAYER_X);
-		assertEquals(PLAYER_X, game.identifyPlayerAt(POS_1, POS_1));
+		Position pos1 = new Position(POS_1, POS_1);
+		
+		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos1);
+		game.play(pos1);
+		Mockito.when(board.identifyPlayerAt(pos1)).thenReturn(PLAYER_X);
+		assertEquals(PLAYER_X, game.identifyPlayerAt(pos1));
 	}
 	
 	@Test
 	public void alternativelySwitchBetweenPlayers() {
-		Mockito.doNothing().when(board).placeMoveOnTheBoard(POS_1, POS_1);
-		game.play(POS_1, POS_1);
+		Position pos1 = new Position(POS_1, POS_1);
+		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos1);
+		game.play(pos1);
 		
-		Mockito.doNothing().when(board).placeMoveOnTheBoard(POS_0, POS_1);
-		Mockito.when(board.identifyPlayerAt(POS_0, POS_1)).thenReturn(PLAYER_O);
-		game.play(POS_0, POS_1);
-		assertEquals(PLAYER_O, game.identifyPlayerAt(POS_0, POS_1));
+		Position pos2 = new Position(POS_0, POS_1);
+		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos2);
+		Mockito.when(board.identifyPlayerAt(pos2)).thenReturn(PLAYER_O);
+		game.play(pos2);
+		assertEquals(PLAYER_O, game.identifyPlayerAt(pos2));
 	}
 	
 	

@@ -1,6 +1,7 @@
 package org.tdd.tictactoe;
 
 import org.springframework.stereotype.Component;
+import org.tdd.tictactoe.model.Position;
 
 @Component
 public class GameBoard {
@@ -12,13 +13,13 @@ public class GameBoard {
 	private char[][] board = new char[GAME_BOARD_SIZE][GAME_BOARD_SIZE];
 	private char currentPlayer;
 	
-	public void placeMoveOnTheBoard(int row, int column) {
+	public void placeMoveOnTheBoard(Position position) {
 		currentPlayer = identifyNextPlayer();
-		board[row][column] = currentPlayer;
+		board[position.getRow()][position.getColumn()] = currentPlayer;
 	}
 
-	public char identifyPlayerAt(int row, int column) {
-		return board[row][column];
+	public char identifyPlayerAt(Position position) {
+		return board[position.getRow()][position.getColumn()];
 	}
 	
 	public char identifyNextPlayer() {

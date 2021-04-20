@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.tdd.tictactoe.model.Position;
 
 public class GameBoardTest {
 
@@ -22,16 +23,20 @@ public class GameBoardTest {
 	
 	@Test
 	public void playerXShouldBeAbleToMakeMoveInAnyPositionOnTheBoardAndIdentifyTheSame() {
-		board.placeMoveOnTheBoard(POS_1, POS_1);
-		assertEquals(PLAYER_X, board.identifyPlayerAt(POS_1, POS_1));
+		Position pos1 = new Position(POS_1, POS_1);
+		board.placeMoveOnTheBoard(pos1);
+		assertEquals(PLAYER_X, board.identifyPlayerAt(pos1));
 	}
 	
 	@Test
 	public void alternativelySwitchBetweenPlayers() {
-		board.placeMoveOnTheBoard(POS_1, POS_1);
-		assertEquals(PLAYER_X, board.identifyPlayerAt(POS_1, POS_1));
-		board.placeMoveOnTheBoard(POS_0, POS_1);
-		assertEquals(PLAYER_O, board.identifyPlayerAt(POS_0, POS_1));
+		Position pos1 = new Position(POS_1, POS_1);
+		board.placeMoveOnTheBoard(pos1);
+		assertEquals(PLAYER_X, board.identifyPlayerAt(pos1));
+		
+		Position pos2 = new Position(POS_0, POS_1);
+		board.placeMoveOnTheBoard(pos2);
+		assertEquals(PLAYER_O, board.identifyPlayerAt(pos2));
 	}
 	
 	

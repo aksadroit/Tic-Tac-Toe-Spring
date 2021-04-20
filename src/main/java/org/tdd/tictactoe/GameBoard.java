@@ -9,6 +9,8 @@ import org.tdd.tictactoe.model.Position;
 public class GameBoard {
 	
 	private static final int GAME_BOARD_SIZE = 3;
+	private static final int GAME_BOARD_LOWER_LIMIT = 0;
+	private static final int GAME_BOARD_UPPER_LIMIT = 2;
 	private static final char PLAYER_X = 'X';
 	private static final char PLAYER_O = 'O';
 	private static final char EMPTY = '\0';
@@ -35,7 +37,7 @@ public class GameBoard {
 	}
 
 	public boolean isPositionWithinValidRange(Position validPosition) {
-		Predicate<Position> positionRangePredicate =  pos -> pos.getRow() >= 0 && pos.getRow() <= 2 && pos.getColumn() >= 0 && pos.getColumn() <= 2;
+		Predicate<Position> positionRangePredicate =  pos -> pos.getRow() >= GAME_BOARD_LOWER_LIMIT && pos.getRow() <= GAME_BOARD_UPPER_LIMIT && pos.getColumn() >= GAME_BOARD_LOWER_LIMIT && pos.getColumn() <= GAME_BOARD_UPPER_LIMIT;
 		return positionRangePredicate.test(validPosition);
 	}
 	

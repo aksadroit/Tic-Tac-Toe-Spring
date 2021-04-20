@@ -38,7 +38,7 @@ public class TicTacToeGame {
 			result = GAME_WINNER+board.identifyPlayerAt(position);
 		} else if (board.areAllPositionOnBoardFullyOccupiedByPlayers()) {
 			result = GAME_DRAW;
-		} else if (!board.areAllPositionOnBoardFullyOccupiedByPlayers()) {
+		} else {
 			result = GAME_CONTINUE;
 		}
 		return result;

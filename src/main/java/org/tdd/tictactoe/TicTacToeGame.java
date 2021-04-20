@@ -14,9 +14,7 @@ public class TicTacToeGame {
 	}
 
 	public char identifyPlayerAt(int row, int column) {
-		char player;
-		player = gameBoard[row][column];
-		return player;
+		return gameBoard[row][column];
 	}
 
 }

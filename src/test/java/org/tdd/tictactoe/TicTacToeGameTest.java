@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.tdd.tictactoe.exception.PositionAlreadyOccupiedException;
+import org.tdd.tictactoe.exception.PositionOutOfBoundException;
 import org.tdd.tictactoe.model.Position;
 
 @SpringBootTest
@@ -27,9 +28,10 @@ public class TicTacToeGameTest {
 	private TicTacToeGame game;
 	
 	@Test
-	public void playerXShouldBeAbleToMakeMoveInAnyPositionOnTheBoardAndIdentifyTheSame() throws PositionAlreadyOccupiedException {
+	public void playerXShouldBeAbleToMakeMoveInAnyPositionOnTheBoardAndIdentifyTheSame() throws PositionAlreadyOccupiedException, PositionOutOfBoundException {
 		Position pos1 = new Position(POS_1, POS_1);
 		
+		Mockito.when(board.isPositionWithinValidRange(pos1)).thenReturn(true);
 		Mockito.when(board.isPositionAvailable(pos1)).thenReturn(true);
 		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos1);
 		game.play(pos1);
@@ -38,13 +40,15 @@ public class TicTacToeGameTest {
 	}
 	
 	@Test
-	public void alternativelySwitchBetweenPlayers() throws PositionAlreadyOccupiedException {
+	public void alternativelySwitchBetweenPlayers() throws PositionAlreadyOccupiedException, PositionOutOfBoundException {
 		Position pos1 = new Position(POS_1, POS_1);
+		Mockito.when(board.isPositionWithinValidRange(pos1)).thenReturn(true);
 		Mockito.when(board.isPositionAvailable(pos1)).thenReturn(true);
 		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos1);
 		game.play(pos1);
 		
 		Position pos2 = new Position(POS_0, POS_1);
+		Mockito.when(board.isPositionWithinValidRange(pos2)).thenReturn(true);
 		Mockito.when(board.isPositionAvailable(pos2)).thenReturn(true);
 		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos2);
 		Mockito.when(board.identifyPlayerAt(pos2)).thenReturn(PLAYER_O);
@@ -53,15 +57,31 @@ public class TicTacToeGameTest {
 	}
 	
 	@Test
-	public void shouldThrowExceptionIfPositionIsAlreadyOccupied() throws PositionAlreadyOccupiedException {
+	public void shouldThrowExceptionIfPositionIsAlreadyOccupied() throws PositionAlreadyOccupiedException, PositionOutOfBoundException {
 		Position pos1 = new Position(POS_1, POS_1);
+		Mockito.when(board.isPositionWithinValidRange(pos1)).thenReturn(true);
 		Mockito.when(board.isPositionAvailable(pos1)).thenReturn(true);
 		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos1);
 		game.play(pos1);
 		
 		Position pos2 = new Position(POS_1, POS_1);
+		Mockito.when(board.isPositionWithinValidRange(pos2)).thenReturn(true);
 		Mockito.when(board.isPositionAvailable(pos2)).thenReturn(false);
 		assertThrows(PositionAlreadyOccupiedException.class, () -> game.play(pos2));
+	}
+	
+	@Test
+	public void shouldThrowExceptionIfPositionNotInValidRange() throws PositionOutOfBoundException, PositionAlreadyOccupiedException {
+		Position pos1 = new Position(POS_1, POS_1);
+		Mockito.when(board.isPositionWithinValidRange(pos1)).thenReturn(true);
+		Mockito.when(board.isPositionAvailable(pos1)).thenReturn(true);
+		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos1);
+		game.play(pos1);
+		
+		Position pos2 = new Position(POS_1, 3);
+		Mockito.when(board.isPositionWithinValidRange(pos2)).thenReturn(false);
+		Mockito.when(board.isPositionAvailable(pos2)).thenReturn(true);
+		assertThrows(PositionOutOfBoundException.class, () -> game.play(pos2));
 	}
 	
 

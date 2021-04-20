@@ -5,6 +5,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.tdd.tictactoe.exception.PositionAlreadyOccupiedException;
+import org.tdd.tictactoe.exception.PositionOutOfBoundException;
 import org.tdd.tictactoe.model.Position;
 
 @Component
@@ -16,7 +17,11 @@ public class TicTacToeGame {
 	@Autowired
 	private GameBoard board;
 	
-	public void play(Position position) throws PositionAlreadyOccupiedException {
+	public void play(Position position) throws PositionOutOfBoundException, PositionAlreadyOccupiedException {
+		if (!board.isPositionWithinValidRange(position)) {
+			throw new PositionOutOfBoundException("Please provide a valid position within a range of 0 to 2");
+		}
+		
 		if (!board.isPositionAvailable(position)) {
 			throw new PositionAlreadyOccupiedException(POSITION_OCCUPIED_MESSAGE);
 		}

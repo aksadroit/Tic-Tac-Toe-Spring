@@ -84,5 +84,15 @@ public class TicTacToeGameTest {
 		assertThrows(PositionOutOfBoundException.class, () -> game.play(pos2));
 	}
 	
+	@Test
+	public void shouldReturnContinueIfAnyPositionAvailableForPlayer() throws PositionOutOfBoundException, PositionAlreadyOccupiedException {
+		Position pos1 = new Position(POS_0, POS_0);
+		Mockito.when(board.isPositionWithinValidRange(pos1)).thenReturn(true);
+		Mockito.when(board.isPositionAvailable(pos1)).thenReturn(true);
+		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos1);
+		Mockito.when(board.areAllPositionOnBoardFullyOccupiedByPlayers()).thenReturn(false);
+		assertEquals("Continue..!!", game.play(pos1));	
+	}
+	
 
 }

@@ -53,5 +53,18 @@ public class GameBoard {
 		}
 		return isRowOccupied;
 	}
+
+	public boolean isAnyColumnOccupiedBySinglePlayer() {
+		boolean isColumnOccupied = false;
+		Position position;
+		for (int i = 0; i < 3; i++) {
+			position = new Position(0, i);
+			if (!isPositionAvailable(position) && board[0][i] == board[1][i] && board[1][i] == board[2][i]) {
+				isColumnOccupied = true;
+				break;
+			}
+		}
+		return isColumnOccupied;
+	}
 	
 }

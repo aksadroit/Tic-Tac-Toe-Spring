@@ -33,7 +33,10 @@ public class TicTacToeGame {
 		
 		board.placeMoveOnTheBoard(position);
 		
-		if (board.isAnyRowOccupiedBySinglePlayer() || board.isAnyColumnOccupiedBySinglePlayer() || board.isTopRightToBottomLeftDiagonalOccupiedBySinglePlayer()) {
+		if (board.isAnyRowOccupiedBySinglePlayer() 
+				|| board.isAnyColumnOccupiedBySinglePlayer() 
+				|| board.isTopRightToBottomLeftDiagonalOccupiedBySinglePlayer() 
+				|| board.isTopLeftToBottomRightDiagonalOccupiedBySinglePlayer()) {
 			result = GAME_WINNER+board.identifyPlayerAt(position);
 		} else if (!board.areAllPositionOnBoardFullyOccupiedByPlayers()) {
 			result = GAME_CONTINUE;

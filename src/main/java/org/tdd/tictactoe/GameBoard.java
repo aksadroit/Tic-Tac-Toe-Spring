@@ -68,11 +68,7 @@ public class GameBoard {
 	}
 	
 	public boolean isTopLeftToBottomRightDiagonalOccupiedBySinglePlayer() {
-		boolean isDiagonalOccupied = false;
-		if (compareGameBoardContent(board[POS_0][POS_0], board[POS_1][POS_1], board[POS_2][POS_2])) {
-			isDiagonalOccupied = true;
-		}
-		return isDiagonalOccupied;
+		return compareGameBoardContent(board[POS_0][POS_0], board[POS_1][POS_1], board[POS_2][POS_2]);
 	}
 	
 	private boolean compareGameBoardContent(char move1, char move2, char move3) {

@@ -7,13 +7,13 @@ public class TicTacToeGame {
 
 	private char[][] gameBoard = new char[3][3];
 	
-	public void placeMoveOnTheBoard(int i, int j, char c) {
-		gameBoard[i][j] = c;
+	public void placeMoveOnTheBoard(int row, int column, char player) {
+		gameBoard[row][column] = player;
 	}
 
-	public char identifyPlayerAt(int i, int j) {
+	public char identifyPlayerAt(int row, int column) {
 		char player;
-		player = gameBoard[i][j];
+		player = gameBoard[row][column];
 		return player;
 	}
 

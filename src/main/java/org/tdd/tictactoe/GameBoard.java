@@ -43,10 +43,8 @@ public class GameBoard {
 
 	public boolean isAnyRowOccupiedBySinglePlayer() {
 		boolean isRowOccupied = false;
-		Position position;
 		for (int i = 0; i < 3; i++) {
-			position = new Position(i, 0);
-			if (!isPositionAvailable(position) && board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
+			if (compareGameBoardContent(board[i][0], board[i][1], board[i][2])) {
 				isRowOccupied = true;
 				break;
 			}
@@ -56,15 +54,17 @@ public class GameBoard {
 
 	public boolean isAnyColumnOccupiedBySinglePlayer() {
 		boolean isColumnOccupied = false;
-		Position position;
 		for (int i = 0; i < 3; i++) {
-			position = new Position(0, i);
-			if (!isPositionAvailable(position) && board[0][i] == board[1][i] && board[1][i] == board[2][i]) {
+			if (compareGameBoardContent(board[0][i], board[1][i], board[2][i])) {
 				isColumnOccupied = true;
 				break;
 			}
 		}
 		return isColumnOccupied;
+	}
+	
+	private boolean compareGameBoardContent(char move1, char move2, char move3) {
+		return (move1 != EMPTY && move1 == move2 && move2 == move3);
 	}
 	
 }

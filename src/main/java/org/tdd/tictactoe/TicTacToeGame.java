@@ -11,12 +11,14 @@ import org.tdd.tictactoe.model.Position;
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class TicTacToeGame {
 	
+	private static final String POSITION_OCCUPIED_MESSAGE = "Position is already occupied by other player. Please choose a different position.";
+	
 	@Autowired
 	private GameBoard board;
 	
 	public void play(Position position) throws PositionAlreadyOccupiedException {
 		if (!board.isPositionAvailable(position)) {
-			throw new PositionAlreadyOccupiedException("Position is already occupied by other player. Please choose a different position.");
+			throw new PositionAlreadyOccupiedException(POSITION_OCCUPIED_MESSAGE);
 		}
 		
 		board.placeMoveOnTheBoard(position);

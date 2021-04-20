@@ -17,6 +17,7 @@ public class TicTacToeGame {
 	
 	private static final String GAME_CONTINUE = "Continue..!!";
 	private static final String GAME_WINNER = "Winner is Player_";
+	private static final String GAME_DRAW = "It's a Draw Game";
 	
 	@Autowired
 	private GameBoard board;
@@ -36,7 +37,7 @@ public class TicTacToeGame {
 		if (checkPlayerWinningConiditions()) {
 			result = GAME_WINNER+board.identifyPlayerAt(position);
 		} else if (board.areAllPositionOnBoardFullyOccupiedByPlayers()) {
-			result = "It's a Draw Game";
+			result = GAME_DRAW;
 		} else if (!board.areAllPositionOnBoardFullyOccupiedByPlayers()) {
 			result = GAME_CONTINUE;
 		}

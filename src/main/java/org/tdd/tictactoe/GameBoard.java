@@ -78,5 +78,21 @@ public class GameBoard {
 	private boolean compareGameBoardContent(char move1, char move2, char move3) {
 		return (move1 != EMPTY && move1 == move2 && move2 == move3);
 	}
+
+	public boolean areAllPositionOnBoardFullyOccupiedByPlayers() {
+		boolean isAllPositionOccupied = true;
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (board[i][j] == EMPTY) {
+					isAllPositionOccupied = false;
+					break;
+				}
+			}
+			if (!isAllPositionOccupied) {
+				break;
+			}
+		}
+		return isAllPositionOccupied;
+	}
 	
 }

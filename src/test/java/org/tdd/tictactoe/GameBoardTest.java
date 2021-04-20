@@ -135,5 +135,37 @@ public class GameBoardTest {
 		
 		assertTrue(board.isTopRightToBottomLeftDiagonalOccupiedBySinglePlayer());
 	}
+	
+	@Test
+	public void shouldReturnTrueWhenAllPositionsOnBoardAreOccupied() {
+		Position pos1 = new Position(POS_0, POS_0);
+		board.placeMoveOnTheBoard(pos1);
+		
+		Position pos2 = new Position(POS_0, POS_1);
+		board.placeMoveOnTheBoard(pos2);
+		
+		Position pos3 = new Position(POS_0, POS_2);
+		board.placeMoveOnTheBoard(pos3);
+		
+		Position pos4 = new Position(POS_1, POS_1);
+		board.placeMoveOnTheBoard(pos4);
+		
+		Position pos5 = new Position(POS_1, POS_0);
+		board.placeMoveOnTheBoard(pos5);
+		
+		Position pos6 = new Position(POS_1, POS_2);
+		board.placeMoveOnTheBoard(pos6);
+		
+		Position pos7 = new Position(POS_2, POS_1);
+		board.placeMoveOnTheBoard(pos7);
+		
+		Position pos8 = new Position(POS_2, POS_0);
+		board.placeMoveOnTheBoard(pos8);
+		
+		Position pos9 = new Position(POS_2, POS_2);
+		board.placeMoveOnTheBoard(pos9);
+		
+		assertTrue(board.areAllPositionOnBoardFullyOccupiedByPlayers());
+	}
 
 }

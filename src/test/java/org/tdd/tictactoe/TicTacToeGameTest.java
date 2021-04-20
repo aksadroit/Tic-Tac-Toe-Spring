@@ -1,10 +1,14 @@
 package org.tdd.tictactoe;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
+@SpringBootTest
 public class TicTacToeGameTest {
 
 	private static final int POS_0 = 0;
@@ -13,24 +17,28 @@ public class TicTacToeGameTest {
 	private static final char PLAYER_X = 'X';
 	private static final char PLAYER_O = 'O';
 	
-	private TicTacToeGame game;
+	@MockBean
+    private GameBoard board;
 	
-	@BeforeEach
-	public void init() {
-		game = new TicTacToeGame();
-	}
+	@Autowired
+	private TicTacToeGame game;
 	
 	@Test
 	public void playerXShouldBeAbleToMakeMoveInAnyPositionOnTheBoardAndIdentifyTheSame() {
-		game.placeMoveOnTheBoard(POS_1, POS_1);
+		Mockito.doNothing().when(board).placeMoveOnTheBoard(POS_1, POS_1);
+		game.play(POS_1, POS_1);
+		Mockito.when(board.identifyPlayerAt(POS_1, POS_1)).thenReturn(PLAYER_X);
 		assertEquals(PLAYER_X, game.identifyPlayerAt(POS_1, POS_1));
 	}
 	
 	@Test
 	public void alternativelySwitchBetweenPlayers() {
-		game.placeMoveOnTheBoard(POS_1, POS_1);
-		assertEquals(PLAYER_X, game.identifyPlayerAt(POS_1, POS_1));
-		game.placeMoveOnTheBoard(POS_0, POS_1);
+		Mockito.doNothing().when(board).placeMoveOnTheBoard(POS_1, POS_1);
+		game.play(POS_1, POS_1);
+		
+		Mockito.doNothing().when(board).placeMoveOnTheBoard(POS_0, POS_1);
+		Mockito.when(board.identifyPlayerAt(POS_0, POS_1)).thenReturn(PLAYER_O);
+		game.play(POS_0, POS_1);
 		assertEquals(PLAYER_O, game.identifyPlayerAt(POS_0, POS_1));
 	}
 	

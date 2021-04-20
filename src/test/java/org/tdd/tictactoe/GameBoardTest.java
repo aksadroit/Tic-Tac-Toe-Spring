@@ -11,6 +11,7 @@ public class GameBoardTest {
 
 	private static final int POS_0 = 0;
 	private static final int POS_1 = 1;
+	private static final int POS_2 = 2;
 	
 	private static final char PLAYER_X = 'X';
 	private static final char PLAYER_O = 'O';
@@ -42,7 +43,7 @@ public class GameBoardTest {
 	
 	@Test
 	public void checkIfPositionIsAvailableToPlay() {
-		Position position = new Position(0, 2);
+		Position position = new Position(POS_0, POS_2);
 		assertTrue(board.isPositionAvailable(position));
 	}
 	

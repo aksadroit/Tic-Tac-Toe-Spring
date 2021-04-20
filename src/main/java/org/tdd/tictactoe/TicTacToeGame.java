@@ -5,7 +5,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class TicTacToeGame {
 
-	private char[][] gameBoard = new char[3][3];
+	private static final int GAME_BOARD_SIZE = 3;
+	
+	private char[][] gameBoard = new char[GAME_BOARD_SIZE][GAME_BOARD_SIZE];
 	
 	public void placeMoveOnTheBoard(int row, int column, char player) {
 		gameBoard[row][column] = player;

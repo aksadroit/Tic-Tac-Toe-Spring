@@ -16,6 +16,7 @@ public class TicTacToeGame {
 	private static final String POSITION_OUT_OF_RANGE_MESSAGE = "Please provide a valid position within a range of 0 to 2";
 	
 	private static final String GAME_CONTINUE = "Continue..!!";
+	private static final String GAME_WINNER = "Winner is Player_";
 	
 	@Autowired
 	private GameBoard board;
@@ -33,7 +34,7 @@ public class TicTacToeGame {
 		board.placeMoveOnTheBoard(position);
 		
 		if (board.isAnyRowOccupiedBySinglePlayer()) {
-			result = "Winner is Player_"+board.identifyPlayerAt(position);
+			result = GAME_WINNER+board.identifyPlayerAt(position);
 		} else if (!board.areAllPositionOnBoardFullyOccupiedByPlayers()) {
 			result = GAME_CONTINUE;
 		}

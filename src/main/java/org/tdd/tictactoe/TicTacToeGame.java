@@ -22,13 +22,7 @@ public class TicTacToeGame {
 	}
 	
 	public char identifyNextPlayer() {
-		char nextPlayer;
-		if (currentPlayer == PLAYER_X) {
-			nextPlayer = PLAYER_O;
-		} else {
-			nextPlayer = PLAYER_X;
-		}
-		return nextPlayer;
+		return currentPlayer == PLAYER_X ? PLAYER_O : PLAYER_X;
 	}
 
 }

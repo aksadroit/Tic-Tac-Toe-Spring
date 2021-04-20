@@ -12,8 +12,19 @@ class TicTacToeGameTest {
 	@Test
 	void playerXShouldBeAbleToMakeMoveInAnyPositionOnTheBoardAndIdentifyTheSame() {
 		TicTacToeGame game = new TicTacToeGame();
-		game.placeMoveOnTheBoard(POS_1, POS_1, PLAYER_X);
+		game.placeMoveOnTheBoard(POS_1, POS_1);
 		assertEquals(PLAYER_X, game.identifyPlayerAt(POS_1, POS_1));
 	}
+	
+	@Test
+	void alternativelySwitchBetweenPlayers() {
+		TicTacToeGame game = new TicTacToeGame();
+		game.placeMoveOnTheBoard(POS_1, POS_1);
+		assertEquals(PLAYER_X, game.identifyPlayerAt(POS_1, POS_1));
+		game.placeMoveOnTheBoard(0, POS_1);
+		assertEquals('O', game.identifyPlayerAt(0, POS_1));
+	}
+	
+	
 
 }

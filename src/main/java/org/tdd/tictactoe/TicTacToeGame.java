@@ -35,6 +35,8 @@ public class TicTacToeGame {
 		
 		if (checkPlayerWinningConiditions()) {
 			result = GAME_WINNER+board.identifyPlayerAt(position);
+		} else if (board.areAllPositionOnBoardFullyOccupiedByPlayers()) {
+			result = "It's a Draw Game";
 		} else if (!board.areAllPositionOnBoardFullyOccupiedByPlayers()) {
 			result = GAME_CONTINUE;
 		}

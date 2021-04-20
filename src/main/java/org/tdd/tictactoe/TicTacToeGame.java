@@ -33,15 +33,19 @@ public class TicTacToeGame {
 		
 		board.placeMoveOnTheBoard(position);
 		
-		if (board.isAnyRowOccupiedBySinglePlayer() 
-				|| board.isAnyColumnOccupiedBySinglePlayer() 
-				|| board.isTopRightToBottomLeftDiagonalOccupiedBySinglePlayer() 
-				|| board.isTopLeftToBottomRightDiagonalOccupiedBySinglePlayer()) {
+		if (checkPlayerWinningConiditions()) {
 			result = GAME_WINNER+board.identifyPlayerAt(position);
 		} else if (!board.areAllPositionOnBoardFullyOccupiedByPlayers()) {
 			result = GAME_CONTINUE;
 		}
 		return result;
+	}
+
+	private boolean checkPlayerWinningConiditions() {
+		return board.isAnyRowOccupiedBySinglePlayer() 
+				|| board.isAnyColumnOccupiedBySinglePlayer() 
+				|| board.isTopRightToBottomLeftDiagonalOccupiedBySinglePlayer() 
+				|| board.isTopLeftToBottomRightDiagonalOccupiedBySinglePlayer();
 	}
 	
 	public char identifyPlayerAt(Position position) {

@@ -17,11 +17,13 @@ public class TicTacToeGameTest {
 
 	private static final int POS_0 = 0;
 	private static final int POS_1 = 1;
+	private static final int POS_2 = 2;
 	
 	private static final char PLAYER_X = 'X';
 	private static final char PLAYER_O = 'O';
 	
 	private static final String GAME_CONTINUE = "Continue..!!";
+	private static final String GAME_WINNER_PLAYER_X = "Winner is Player_X";
 	
 	@MockBean
     private GameBoard board;
@@ -122,7 +124,7 @@ public class TicTacToeGameTest {
 		Mockito.when(board.areAllPositionOnBoardFullyOccupiedByPlayers()).thenReturn(false);
 		game.play(pos3);
 		
-		Position pos4 = new Position(2, POS_1);
+		Position pos4 = new Position(POS_2, POS_1);
 		Mockito.when(board.isPositionWithinValidRange(pos4)).thenReturn(true);
 		Mockito.when(board.isPositionAvailable(pos4)).thenReturn(true);
 		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos4);
@@ -130,14 +132,14 @@ public class TicTacToeGameTest {
 		Mockito.when(board.areAllPositionOnBoardFullyOccupiedByPlayers()).thenReturn(false);
 		game.play(pos4);
 		
-		Position pos5 = new Position(POS_0, 2);
+		Position pos5 = new Position(POS_0, POS_2);
 		Mockito.when(board.isPositionWithinValidRange(pos5)).thenReturn(true);
 		Mockito.when(board.isPositionAvailable(pos5)).thenReturn(true);
 		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos5);
 		Mockito.when(board.isAnyRowOccupiedBySinglePlayer()).thenReturn(true);
 		Mockito.when(board.identifyPlayerAt(pos5)).thenReturn('X');
 		
-		assertEquals("Winner is Player_X", game.play(pos5));
+		assertEquals(GAME_WINNER_PLAYER_X, game.play(pos5));
 
 	}
 	

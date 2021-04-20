@@ -15,6 +15,8 @@ public class TicTacToeGame {
 	private static final String POSITION_OCCUPIED_MESSAGE = "Position is already occupied by other player. Please choose a different position.";
 	private static final String POSITION_OUT_OF_RANGE_MESSAGE = "Please provide a valid position within a range of 0 to 2";
 	
+	private static final String GAME_CONTINUE = "Continue..!!";
+	
 	@Autowired
 	private GameBoard board;
 	
@@ -31,7 +33,7 @@ public class TicTacToeGame {
 		board.placeMoveOnTheBoard(position);
 		
 		if (!board.areAllPositionOnBoardFullyOccupiedByPlayers()) {
-			result = "Continue..!!";
+			result = GAME_CONTINUE;
 		}
 		return result;
 	}

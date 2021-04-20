@@ -1,5 +1,7 @@
 package org.tdd.tictactoe;
 
+import java.util.function.Predicate;
+
 import org.springframework.stereotype.Component;
 import org.tdd.tictactoe.model.Position;
 
@@ -24,6 +26,11 @@ public class GameBoard {
 	
 	public char identifyNextPlayer() {
 		return currentPlayer == PLAYER_X ? PLAYER_O : PLAYER_X;
+	}
+
+	public boolean isPositionAvailable(Position position) {
+		Predicate<Position> positionNotOccupiedPredicate =  pos -> board[pos.getRow()][pos.getColumn()] == '\0';
+		return positionNotOccupiedPredicate.test(position);
 	}
 	
 }

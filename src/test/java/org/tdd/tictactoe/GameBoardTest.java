@@ -1,6 +1,7 @@
 package org.tdd.tictactoe;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,6 +38,12 @@ public class GameBoardTest {
 		Position pos2 = new Position(POS_0, POS_1);
 		board.placeMoveOnTheBoard(pos2);
 		assertEquals(PLAYER_O, board.identifyPlayerAt(pos2));
+	}
+	
+	@Test
+	public void checkIfPositionIsAvailableToPlay() {
+		Position position = new Position(0, 2);
+		assertTrue(board.isPositionAvailable(position));
 	}
 	
 	

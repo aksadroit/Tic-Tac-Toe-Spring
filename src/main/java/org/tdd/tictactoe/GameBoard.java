@@ -15,6 +15,10 @@ public class GameBoard {
 	private static final char PLAYER_O = 'O';
 	private static final char EMPTY = '\0';
 	
+	private static final int POS_0 = 0;
+	private static final int POS_1 = 1;
+	private static final int POS_2 = 2;
+	
 	private char[][] board = new char[GAME_BOARD_SIZE][GAME_BOARD_SIZE];
 	private char currentPlayer;
 	
@@ -44,7 +48,7 @@ public class GameBoard {
 	public boolean isAnyRowOccupiedBySinglePlayer() {
 		boolean isRowOccupied = false;
 		for (int i = 0; i < 3; i++) {
-			if (compareGameBoardContent(board[i][0], board[i][1], board[i][2])) {
+			if (compareGameBoardContent(board[i][POS_0], board[i][POS_1], board[i][POS_2])) {
 				isRowOccupied = true;
 				break;
 			}
@@ -55,7 +59,7 @@ public class GameBoard {
 	public boolean isAnyColumnOccupiedBySinglePlayer() {
 		boolean isColumnOccupied = false;
 		for (int i = 0; i < 3; i++) {
-			if (compareGameBoardContent(board[0][i], board[1][i], board[2][i])) {
+			if (compareGameBoardContent(board[POS_0][i], board[POS_1][i], board[POS_2][i])) {
 				isColumnOccupied = true;
 				break;
 			}
@@ -65,7 +69,7 @@ public class GameBoard {
 	
 	public boolean isTopLeftToBottomRightDiagonalOccupiedBySinglePlayer() {
 		boolean isDiagonalOccupied = false;
-		if (compareGameBoardContent(board[0][0], board[1][1], board[2][2])) {
+		if (compareGameBoardContent(board[POS_0][POS_0], board[POS_1][POS_1], board[POS_2][POS_2])) {
 			isDiagonalOccupied = true;
 		}
 		return isDiagonalOccupied;

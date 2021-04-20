@@ -32,7 +32,9 @@ public class TicTacToeGame {
 		
 		board.placeMoveOnTheBoard(position);
 		
-		if (!board.areAllPositionOnBoardFullyOccupiedByPlayers()) {
+		if (board.isAnyRowOccupiedBySinglePlayer()) {
+			result = "Winner is Player_"+board.identifyPlayerAt(position);
+		} else if (!board.areAllPositionOnBoardFullyOccupiedByPlayers()) {
 			result = GAME_CONTINUE;
 		}
 		return result;

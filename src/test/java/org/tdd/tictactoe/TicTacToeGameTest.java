@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class TicTacToeGameTest {
+public class TicTacToeGameTest {
 
 	private static final int POS_0 = 0;
 	private static final int POS_1 = 1;
@@ -16,18 +16,18 @@ class TicTacToeGameTest {
 	private TicTacToeGame game;
 	
 	@BeforeEach
-	void init() {
+	public void init() {
 		game = new TicTacToeGame();
 	}
 	
 	@Test
-	void playerXShouldBeAbleToMakeMoveInAnyPositionOnTheBoardAndIdentifyTheSame() {
+	public void playerXShouldBeAbleToMakeMoveInAnyPositionOnTheBoardAndIdentifyTheSame() {
 		game.placeMoveOnTheBoard(POS_1, POS_1);
 		assertEquals(PLAYER_X, game.identifyPlayerAt(POS_1, POS_1));
 	}
 	
 	@Test
-	void alternativelySwitchBetweenPlayers() {
+	public void alternativelySwitchBetweenPlayers() {
 		game.placeMoveOnTheBoard(POS_1, POS_1);
 		assertEquals(PLAYER_X, game.identifyPlayerAt(POS_1, POS_1));
 		game.placeMoveOnTheBoard(POS_0, POS_1);

@@ -25,6 +25,7 @@ public class TicTacToeGameTest {
 	private static final String GAME_CONTINUE = "Continue..!!";
 	private static final String GAME_WINNER_PLAYER_X = "Winner is Player_X";
 	private static final String GAME_WINNER_PLAYER_O = "Winner is Player_O";
+	private static final String GAME_DRAW = "It's a Draw Game";
 	
 	@MockBean
     private GameBoard board;
@@ -378,7 +379,7 @@ public class TicTacToeGameTest {
 		Mockito.when(board.areAllPositionOnBoardFullyOccupiedByPlayers()).thenReturn(true);
 		game.play(pos9);
 		
-		assertEquals("It's a Draw Game", game.play(pos9));
+		assertEquals(GAME_DRAW, game.play(pos9));
 
 	}
 

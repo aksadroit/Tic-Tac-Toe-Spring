@@ -1,12 +1,14 @@
 package org.tdd.tictactoe;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.tdd.tictactoe.exception.PositionAlreadyOccupiedException;
 import org.tdd.tictactoe.model.Position;
 
 @SpringBootTest
@@ -25,9 +27,10 @@ public class TicTacToeGameTest {
 	private TicTacToeGame game;
 	
 	@Test
-	public void playerXShouldBeAbleToMakeMoveInAnyPositionOnTheBoardAndIdentifyTheSame() {
+	public void playerXShouldBeAbleToMakeMoveInAnyPositionOnTheBoardAndIdentifyTheSame() throws PositionAlreadyOccupiedException {
 		Position pos1 = new Position(POS_1, POS_1);
 		
+		Mockito.when(board.isPositionAvailable(pos1)).thenReturn(true);
 		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos1);
 		game.play(pos1);
 		Mockito.when(board.identifyPlayerAt(pos1)).thenReturn(PLAYER_X);
@@ -35,18 +38,31 @@ public class TicTacToeGameTest {
 	}
 	
 	@Test
-	public void alternativelySwitchBetweenPlayers() {
+	public void alternativelySwitchBetweenPlayers() throws PositionAlreadyOccupiedException {
 		Position pos1 = new Position(POS_1, POS_1);
+		Mockito.when(board.isPositionAvailable(pos1)).thenReturn(true);
 		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos1);
 		game.play(pos1);
 		
 		Position pos2 = new Position(POS_0, POS_1);
+		Mockito.when(board.isPositionAvailable(pos2)).thenReturn(true);
 		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos2);
 		Mockito.when(board.identifyPlayerAt(pos2)).thenReturn(PLAYER_O);
 		game.play(pos2);
 		assertEquals(PLAYER_O, game.identifyPlayerAt(pos2));
 	}
 	
+	@Test
+	public void shouldThrowExceptionIfPositionIsAlreadyOccupied() throws PositionAlreadyOccupiedException {
+		Position pos1 = new Position(POS_1, POS_1);
+		Mockito.when(board.isPositionAvailable(pos1)).thenReturn(true);
+		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos1);
+		game.play(pos1);
+		
+		Position pos2 = new Position(POS_1, POS_1);
+		Mockito.when(board.isPositionAvailable(pos2)).thenReturn(false);
+		assertThrows(PositionAlreadyOccupiedException.class, () -> game.play(pos2));
+	}
 	
 
 }

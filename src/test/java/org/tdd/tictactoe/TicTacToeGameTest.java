@@ -189,5 +189,60 @@ public class TicTacToeGameTest {
 
 	}
 	
+	@Test
+	public void declareThePlayerAsWinnerIfThePlayerCompletelyOccupiesAnyTopRightToBottonLeftDiagonal() throws PositionOutOfBoundException, PositionAlreadyOccupiedException {
+		Position pos1 = new Position(POS_0, POS_0);
+		Mockito.when(board.isPositionWithinValidRange(pos1)).thenReturn(true);
+		Mockito.when(board.isPositionAvailable(pos1)).thenReturn(true);
+		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos1);
+		Mockito.when(board.isAnyRowOccupiedBySinglePlayer()).thenReturn(false);
+		Mockito.when(board.areAllPositionOnBoardFullyOccupiedByPlayers()).thenReturn(false);
+		game.play(pos1);
+		
+		Position pos2 = new Position(POS_2, POS_0);
+		Mockito.when(board.isPositionWithinValidRange(pos2)).thenReturn(true);
+		Mockito.when(board.isPositionAvailable(pos2)).thenReturn(true);
+		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos2);
+		Mockito.when(board.isAnyRowOccupiedBySinglePlayer()).thenReturn(false);
+		Mockito.when(board.areAllPositionOnBoardFullyOccupiedByPlayers()).thenReturn(false);
+		game.play(pos2);
+		
+		Position pos3 = new Position(POS_1, POS_0);
+		Mockito.when(board.isPositionWithinValidRange(pos3)).thenReturn(true);
+		Mockito.when(board.isPositionAvailable(pos3)).thenReturn(true);
+		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos3);
+		Mockito.when(board.isAnyRowOccupiedBySinglePlayer()).thenReturn(false);
+		Mockito.when(board.areAllPositionOnBoardFullyOccupiedByPlayers()).thenReturn(false);
+		game.play(pos3);
+		
+		Position pos4 = new Position(POS_1, POS_1);
+		Mockito.when(board.isPositionWithinValidRange(pos4)).thenReturn(true);
+		Mockito.when(board.isPositionAvailable(pos4)).thenReturn(true);
+		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos4);
+		Mockito.when(board.isAnyRowOccupiedBySinglePlayer()).thenReturn(false);
+		Mockito.when(board.areAllPositionOnBoardFullyOccupiedByPlayers()).thenReturn(false);
+		game.play(pos4);
+		
+		Position pos5 = new Position(POS_1, POS_2);
+		Mockito.when(board.isPositionWithinValidRange(pos5)).thenReturn(true);
+		Mockito.when(board.isPositionAvailable(pos5)).thenReturn(true);
+		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos5);
+		Mockito.when(board.isAnyRowOccupiedBySinglePlayer()).thenReturn(false);
+		Mockito.when(board.isAnyColumnOccupiedBySinglePlayer()).thenReturn(false);
+		game.play(pos5);
+		
+		Position pos6 = new Position(POS_0, POS_2);
+		Mockito.when(board.isPositionWithinValidRange(pos6)).thenReturn(true);
+		Mockito.when(board.isPositionAvailable(pos6)).thenReturn(true);
+		Mockito.doNothing().when(board).placeMoveOnTheBoard(pos6);
+		Mockito.when(board.isAnyRowOccupiedBySinglePlayer()).thenReturn(false);
+		Mockito.when(board.isAnyColumnOccupiedBySinglePlayer()).thenReturn(false);
+		Mockito.when(board.isTopRightToBottomLeftDiagonalOccupiedBySinglePlayer()).thenReturn(true);
+		Mockito.when(board.identifyPlayerAt(pos6)).thenReturn('O');
+		
+		assertEquals("Winner is Player_O", game.play(pos6));
+
+	}
+	
 
 }

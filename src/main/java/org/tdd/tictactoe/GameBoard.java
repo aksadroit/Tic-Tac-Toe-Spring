@@ -40,5 +40,18 @@ public class GameBoard {
 		Predicate<Position> positionRangePredicate =  pos -> pos.getRow() >= GAME_BOARD_LOWER_LIMIT && pos.getRow() <= GAME_BOARD_UPPER_LIMIT && pos.getColumn() >= GAME_BOARD_LOWER_LIMIT && pos.getColumn() <= GAME_BOARD_UPPER_LIMIT;
 		return positionRangePredicate.test(validPosition);
 	}
+
+	public boolean isAnyRowOccupiedBySinglePlayer() {
+		boolean isRowOccupied = false;
+		Position position;
+		for (int i = 0; i < 3; i++) {
+			position = new Position(i, 0);
+			if (!isPositionAvailable(position) && board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
+				isRowOccupied = true;
+				break;
+			}
+		}
+		return isRowOccupied;
+	}
 	
 }

@@ -51,7 +51,26 @@ public class GameBoardTest {
 	public void shouldReturnTrueWhenInputPositionValuesAreInValidRangeOfZeroToTwo() {
 		Position validPosition = new Position(POS_0, POS_0);
 		assertTrue(board.isPositionWithinValidRange(validPosition));
-
+	}
+	
+	@Test
+	public void shouldReturnTrueWhenAnyRowOfTheBoardIsOccupiedBySinglePlayer() {
+		Position pos1 = new Position(POS_0, POS_0);
+		board.placeMoveOnTheBoard(pos1);
+		
+		Position pos2 = new Position(POS_1, POS_1);
+		board.placeMoveOnTheBoard(pos2);
+		
+		Position pos3 = new Position(POS_0, POS_1);
+		board.placeMoveOnTheBoard(pos3);
+		
+		Position pos4 = new Position(POS_2, POS_1);
+		board.placeMoveOnTheBoard(pos4);
+		
+		Position pos5 = new Position(POS_0, POS_2);
+		board.placeMoveOnTheBoard(pos5);
+		
+		assertTrue(board.isAnyRowOccupiedBySinglePlayer());
 	}
 
 }

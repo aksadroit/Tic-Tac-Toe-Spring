@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 public class TicTacToeGame {
 
 	private static final int GAME_BOARD_SIZE = 3;
+	private static final char PLAYER_X = 'X';
+	private static final char PLAYER_O = 'O';
 	
 	private char[][] gameBoard = new char[GAME_BOARD_SIZE][GAME_BOARD_SIZE];
 	private char currentPlayer;
@@ -21,10 +23,10 @@ public class TicTacToeGame {
 	
 	public char identifyNextPlayer() {
 		char nextPlayer;
-		if (currentPlayer == 'X') {
-			nextPlayer = 'O';
+		if (currentPlayer == PLAYER_X) {
+			nextPlayer = PLAYER_O;
 		} else {
-			nextPlayer = 'X';
+			nextPlayer = PLAYER_X;
 		}
 		return nextPlayer;
 	}

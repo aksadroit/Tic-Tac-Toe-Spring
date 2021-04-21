@@ -1,5 +1,6 @@
 package org.tdd.tictactoe;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -9,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.tdd.tictactoe.exception.InvalidUserInputException;
+import org.tdd.tictactoe.exception.PositionAlreadyOccupiedException;
+import org.tdd.tictactoe.exception.PositionOutOfBoundException;
 
 @SpringBootTest
 public class TicTacToeGameExecutorTest {
@@ -35,5 +38,14 @@ public class TicTacToeGameExecutorTest {
 		System.setIn(new ByteArrayInputStream(userInputBuilder.toString().getBytes()));
 		
 		assertThrows(InvalidUserInputException.class, () -> gameExecutor.runGame());
+	}
+	
+	@Test
+	public void shouldDeclarePlayerAsWinnerBasedUponUserInputsFromCommandLine() throws InvalidUserInputException, PositionOutOfBoundException, PositionAlreadyOccupiedException {
+		StringBuilder userInputBuilder = new StringBuilder("0,0").append("\n").append("1,1").append("\n")
+				.append("0,1").append("\n").append("2,1").append("\n").append("0,2");
+		System.setIn(new ByteArrayInputStream(userInputBuilder.toString().getBytes()));
+
+		assertEquals("Winner is Player_X", gameExecutor.runGame());
 	}
 }

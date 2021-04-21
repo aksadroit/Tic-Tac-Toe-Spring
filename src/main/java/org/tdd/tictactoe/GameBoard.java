@@ -2,10 +2,13 @@ package org.tdd.tictactoe;
 
 import java.util.function.Predicate;
 
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.tdd.tictactoe.model.Position;
 
 @Component
+@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class GameBoard {
 	
 	private static final int GAME_BOARD_SIZE = 3;

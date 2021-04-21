@@ -23,3 +23,38 @@ The rules are described below :
 * refactor: refactoring production code
 * test: adding tests, refactoring test; no production code change
 * chore: updating build tasks, package manager configs, etc; no production code change
+
+## Steps to run the test cases in Eclipse/STS IDE
+```
+1) Download project as zip file and unzip the same to a folder If not yet done. 
+2) If project not imported in IDE yet,
+   Then in eclipse/sts IDE,  Go to the below path
+   File -> Import -> select Existing Maven Project option -> Next -> 
+   Browse 	extracted folder and Finish
+3) Then, Right click project in Project Explorer window and 
+   select Run As -> Maven install
+4) Once above steps done, Right click project in Project explorer window and
+   select Run as --> Run Configurations..
+5) Under configuration wizard from the left window right click on Maven Build and
+   select New Configuration.
+6) Select Base directory as your project root folder and under Goals mention clean test
+7) Apply and Run the same. This will execute all test cases.
+```
+
+## Steps to run the application in command prompt
+```
+1) Download project as zip file and unzip the same to a folder If not yet done. 
+2) If project not imported in IDE yet,
+   Then in eclipse/sts IDE,  Go to the below path
+   File -> Import -> select Existing Maven Project option -> Next -> 
+   Browse 	extracted folder and Finish
+3) Then, Right click project in Project Explorer window and 
+   select Run As -> Maven install
+4) Once above steps done,
+   Goto <ProjectDirectory>\target
+   and execute below command
+
+   java -jar Tic-Tac-Toe-0.0.1-SNAPSHOT.jar
+
+```
+

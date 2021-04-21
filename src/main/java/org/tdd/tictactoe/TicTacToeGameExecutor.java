@@ -21,6 +21,7 @@ public class TicTacToeGameExecutor {
 	
 	private static final String USER_INPUT_REGEX = "[ ]*\\d+[ ]*";
 	private static final String INVALID_USER_INPUT_MESSAGE = "Invalid inputs Passed..!! Please pass the input in the format 1,1";
+	private static final String GAME_CONTINUE = "Continue..!!";
 	
 	@Autowired
 	TicTacToeGame game;
@@ -37,7 +38,7 @@ public class TicTacToeGameExecutor {
 			
 			result = game.play(new Position(Integer.parseInt(input[USER_INPUT_ZERO]), Integer.parseInt(input[USER_INPUT_ONE])));
 
-		} while (result.contains("Continue..!!") && scan.hasNext());
+		} while (result.contains(GAME_CONTINUE) && scan.hasNext());
 		scan.close();
 		return result;
 	} 

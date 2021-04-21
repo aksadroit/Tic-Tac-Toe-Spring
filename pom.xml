@@ -55,6 +55,35 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.pitest</groupId>
+				<artifactId>pitest-maven</artifactId>
+				<version>1.5.2</version>
+				<executions>
+					<execution>
+						<id>pit-report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>mutationCoverage</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+	                <dependency>
+	                    <groupId>org.pitest</groupId>
+	                    <artifactId>pitest-junit5-plugin</artifactId>
+	                    <version>0.12</version>
+	                </dependency>
+	            </dependencies>
+				<configuration>
+					<targetClasses>
+						<param>org.tdd.tictactoe.*</param>
+					</targetClasses>
+					<targetTests>
+						<param>org.tdd.tictactoe.*</param>
+					</targetTests>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 

@@ -20,7 +20,12 @@ public class TicTacToeGameExecutorTest {
 	private static final String INPUT_SPACE = " ";
 	
 	private static final String INPUT_ZERO_ZERO = "0,0";
+	private static final String INPUT_ONE_ONE = "1,1";
+	private static final String INPUT_ZERO_ONE = "0,1";
+	private static final String INPUT_TWO_ONE = "2,1";
+	private static final String INPUT_ZERO_TWO = "0,2";
 	private static final String INVALID_INPUT = "1,";
+	private static final String GAME_WINNER = "Winner is Player_X";
 	
 	@Autowired
 	TicTacToeGameExecutor gameExecutor;
@@ -42,10 +47,10 @@ public class TicTacToeGameExecutorTest {
 	
 	@Test
 	public void shouldDeclarePlayerAsWinnerBasedUponUserInputsFromCommandLine() throws InvalidUserInputException, PositionOutOfBoundException, PositionAlreadyOccupiedException {
-		StringBuilder userInputBuilder = new StringBuilder("0,0").append("\n").append("1,1").append("\n")
-				.append("0,1").append("\n").append("2,1").append("\n").append("0,2");
+		StringBuilder userInputBuilder = new StringBuilder(INPUT_ZERO_ZERO).append("\n").append(INPUT_ONE_ONE).append("\n")
+				.append(INPUT_ZERO_ONE).append("\n").append(INPUT_TWO_ONE).append("\n").append(INPUT_ZERO_TWO);
 		System.setIn(new ByteArrayInputStream(userInputBuilder.toString().getBytes()));
 
-		assertEquals("Winner is Player_X", gameExecutor.runGame());
+		assertEquals(GAME_WINNER, gameExecutor.runGame());
 	}
 }

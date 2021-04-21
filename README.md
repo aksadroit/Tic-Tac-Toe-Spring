@@ -34,11 +34,33 @@ The rules are described below :
 3) Then, Right click project in Project Explorer window and 
    select Run As -> Maven install
 4) Once above steps done, Right click project in Project explorer window and
-   select Run as --> Run Configurations..
+   select Run as --> Run Configurations.
 5) Under configuration wizard from the left window right click on Maven Build and
    select New Configuration.
 6) Select Base directory as your project root folder and under Goals mention clean test
 7) Apply and Run the same. This will execute all test cases.
+```
+
+### Jacoco code coverage Report using JaCoCo Maven plugin
+~~~
+1. Right click project in Project explorer window and
+   select Run as --> Run Configurations.
+2. Under configuration wizard from the left window right click on Maven Build and
+   select New Configuration.
+3. Select Base directory as your project root folder and under Goals mention clean test.
+4. The JaCoCo code coverage report will be generated at target/site/jacoco/*
+5. Open the target/site/jacoco/index.html file, review the code coverage report
+~~~
+
+### Mutation code coverage Report using PITest Maven plugin**
+~~~
+1. Right click project in Project explorer window and
+   select Run as --> Run Configurations.
+2. Under configuration wizard from the left window right click on Maven Build and
+   select New Configuration.
+3. Select Base directory as your project root folder and under Goals mention clean test.
+4. The Mutation code coverage report will be generated at target/pit-reports/YYYYMMDDHHMM/*
+5. Open the target/pit-reports/yyyyMMddHHmm/index.html file, review the mutation coverage report
 ```
 
 ## Steps to run the application in command prompt
@@ -55,6 +77,5 @@ The rules are described below :
    and execute below command
 
    java -jar Tic-Tac-Toe-0.0.1-SNAPSHOT.jar
-
 ```
 

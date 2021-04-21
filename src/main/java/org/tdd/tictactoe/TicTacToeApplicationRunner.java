@@ -5,11 +5,17 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 import org.tdd.tictactoe.exception.InvalidUserInputException;
 import org.tdd.tictactoe.exception.PositionAlreadyOccupiedException;
 import org.tdd.tictactoe.exception.PositionOutOfBoundException;
 
+@ConditionalOnProperty(
+		  prefix = "application.runner", 
+		  value = "enabled", 
+		  havingValue = "true", 
+		  matchIfMissing = true)
 @Component
 public class TicTacToeApplicationRunner implements ApplicationRunner {
 

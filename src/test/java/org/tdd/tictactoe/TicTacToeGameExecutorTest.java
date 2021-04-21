@@ -13,7 +13,7 @@ import org.tdd.tictactoe.exception.InvalidUserInputException;
 import org.tdd.tictactoe.exception.PositionAlreadyOccupiedException;
 import org.tdd.tictactoe.exception.PositionOutOfBoundException;
 
-@SpringBootTest
+@SpringBootTest(properties = { "application.runner.enabled=false" })
 public class TicTacToeGameExecutorTest {
 
 	private static final String INPUT_ONE = "1";

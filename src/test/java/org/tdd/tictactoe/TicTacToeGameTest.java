@@ -12,7 +12,7 @@ import org.tdd.tictactoe.exception.PositionAlreadyOccupiedException;
 import org.tdd.tictactoe.exception.PositionOutOfBoundException;
 import org.tdd.tictactoe.model.Position;
 
-@SpringBootTest
+@SpringBootTest(properties = { "application.runner.enabled=false" })
 public class TicTacToeGameTest {
 
 	private static final int POS_0 = 0;

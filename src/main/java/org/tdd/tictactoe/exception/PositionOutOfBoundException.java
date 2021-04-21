@@ -9,10 +9,5 @@ public class PositionOutOfBoundException extends Exception {
 		super(message);
 		this.errorMessage = message;
 	}
-	
-	@Override
-	public String toString() {
-		return errorMessage;
-	}
 
 }

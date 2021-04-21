@@ -10,8 +10,4 @@ public class InvalidUserInputException extends Exception {
 		this.errorMessage = message;
 	}
 	
-	@Override
-	public String toString() {
-		return errorMessage;
-	}
 }

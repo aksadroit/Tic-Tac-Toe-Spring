@@ -30,24 +30,24 @@ public class TicTacToeGameExecutor {
 	TicTacToeGame game;
 
 	public String runGame() throws InvalidUserInputException, PositionOutOfBoundException, PositionAlreadyOccupiedException {
-		String result;
+		String result=null;
 		
 		LOGGER.info("Welcome to Tic Tac Toe Game..!!");
 		LOGGER.info("Please proceed by providing position in the format row,column as 1,2");
 		LOGGER.info("Player X to start with the first move..");
-		Scanner scan = new Scanner(System.in);
-		
-		do {
-			String[] input = scan.nextLine().split(",");
-			if (isUserInputInvalid(input)) {
-				scan.close();
-				throw new InvalidUserInputException(INVALID_USER_INPUT_MESSAGE);
-			}
-			
-			result = game.play(new Position(Integer.parseInt(input[USER_INPUT_ZERO]), Integer.parseInt(input[USER_INPUT_ONE])));
 
-		} while (result.contains(GAME_CONTINUE) && scan.hasNext());
-		scan.close();
+		try(Scanner scan = new Scanner(System.in)) {
+			do {
+				String[] input = scan.nextLine().split(",");
+				if (isUserInputInvalid(input)) {
+					throw new InvalidUserInputException(INVALID_USER_INPUT_MESSAGE);
+				}
+				
+				result = game.play(new Position(Integer.parseInt(input[USER_INPUT_ZERO]), Integer.parseInt(input[USER_INPUT_ONE])));
+
+			} while (result.contains(GAME_CONTINUE) && scan.hasNext());
+		}
+		
 		return result;
 	} 
 	

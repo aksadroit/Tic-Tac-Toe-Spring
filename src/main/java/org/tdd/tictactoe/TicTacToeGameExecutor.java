@@ -1,6 +1,7 @@
 package org.tdd.tictactoe;
 
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -23,12 +24,19 @@ public class TicTacToeGameExecutor {
 	private static final String INVALID_USER_INPUT_MESSAGE = "Invalid inputs Passed..!! Please pass the input in the format 1,1";
 	private static final String GAME_CONTINUE = "Continue..!!";
 	
+	private static final Logger LOGGER = Logger.getLogger(TicTacToeGameExecutor.class.getName());
+	
 	@Autowired
 	TicTacToeGame game;
 
 	public String runGame() throws InvalidUserInputException, PositionOutOfBoundException, PositionAlreadyOccupiedException {
 		String result;
+		
+		LOGGER.info("Welcome to Tic Tac Toe Game..!!");
+		LOGGER.info("Please proceed by providing position in the format row,column as 1,2");
+		LOGGER.info("Player X to start with the first move..");
 		Scanner scan = new Scanner(System.in);
+		
 		do {
 			String[] input = scan.nextLine().split(",");
 			if (isUserInputInvalid(input)) {
